@@ -26,8 +26,40 @@ let num1 = " ";
 let num2 = " ";
 let operator = " ";
 
-function add(num1,num2){
-    return num1 + num2;
+function add(num1, num2){
+    return parseFloat(num1) + parseFloat(num2);
+}
+
+function subtract(num1, num2){
+    return parseFloat(num2) - parseFloat(num1);
+}
+
+function times(num1, num2){
+    return parseFloat(num1) * parseFloat(num2);
+}
+
+function divided(num1, num2){
+    return parseFloat(num1) / parseFloat(num2);
+}
+
+function percentage(num1){
+    return parseFloat(num1) / 100;
+}
+
+
+
+function operate(){
+    if(operator == '+'){
+       return add(num1,num2);
+    }else if(operator == '-'){
+        return subtract(num1,num2);
+    }else if(operator == '/'){
+        return divided(num1,num2);
+    }else if(operator == 'x'){
+        return times(num1,num2);
+    }else if(operator == '%'){
+        return percentage(num1)
+    }
 }
 
 //add event listeners to all the keys
@@ -39,47 +71,47 @@ zero.addEventListener('click', ()=>{
 });
 
 one.addEventListener('click', ()=>{
-    num1 += '1';
+    num1 += 1;
     entryView.textContent = num1;
 });
 
 two.addEventListener('click', ()=>{
-    num1 += '2';
+    num1 += 2;
     entryView.textContent = num1;
 });
 
 three.addEventListener('click', ()=>{
-    num1 += '3';
+    num1 += 3;
     entryView.textContent = num1;
 });
 
 four.addEventListener('click', ()=>{
-    num1 += '4';
+    num1 += 4;
     entryView.textContent = num1;
 });
 
 five.addEventListener('click', ()=>{
-    num1 += '5';
+    num1 += 5;
     entryView.textContent = num1;
 });
 
 six.addEventListener('click', ()=>{
-    num1 += '6';
+    num1 += 6;
     entryView.textContent = num1;
 });
 
 seven.addEventListener('click', ()=>{
-    num1 += '7';
+    num1 += 7;
     entryView.textContent = num1;
 });
 
 eight.addEventListener('click', ()=>{
-    num1 += '8';
+    num1 += 8;
     entryView.textContent = num1;
 });
 
 nine.addEventListener('click', ()=>{
-    num1 += '9';
+    num1 += 9;
     entryView.textContent = num1;
 });
 
@@ -90,7 +122,6 @@ function display(e){
 
 dot.addEventListener('click', display, {
     once: true,
-    capture:false
 });
 
 clear.addEventListener('click', ()=>{
@@ -98,41 +129,54 @@ clear.addEventListener('click', ()=>{
     num1 = " ";
     num2 = " ";
     operator = " ";
+    answerView.textContent = " ";
 });
 
 divide.addEventListener('click', ()=>{
-    num1 += '/';
-    entryView.textContent = num1;
+    operator = '/';
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
 });
 
 percent.addEventListener('click', ()=>{
-    num1 += '%';
-    entryView.textContent = num1;
+    operator = '%';
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
 });
 
-equals.addEventListener('click', ()=>{
-    num1 += '=';
-    entryView.textContent = num1;
-});
 
 minus.addEventListener('click', ()=>{
-    num1 += '-';
-    entryView.textContent = num1;
+    operator = '-';
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
 });
 
 plus.addEventListener('click', ()=>{
-    num1 += '+';
-    entryView.textContent = num1;
+    operator = '+';
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
+
 });
 
 multiply.addEventListener('click', ()=>{
-    num1 += 'x';
-    entryView.textContent = num1;
+    operator = 'x';
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
 });
 
-// back.addEventListener('click', ()=>{
-//     num1 -= ' ';
-//     entryView.textContent = num1;
-// });
+ equals.addEventListener('click', function(){
+    let result = operate();
+    answerView.textContent = result;
+    //operator = " ";
+    // num1 = " ";
+    // num2 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`;
+ })
+
 
 
