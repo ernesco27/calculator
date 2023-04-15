@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Righteous', cursive;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(248, 218, 83)
+}
+
+.container{
+    width: 300px;
+    height: 550px;
+    background-color: black;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display{
+
+    width: 280px;
+    height: 80px;
+    background-color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.display > div{
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-size: 30px;
+
+}
+
+.entry{
+    font-size: 20px;
+    padding: 8px 10px;
+}
+
+.answer{
+    text-align: end;
+    padding-right: 8px;
+}
+
+.action-bar{
+    width: 280px;
+    height: 40px;
+    background-color: rgb(14, 145, 252);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    font-size: 18px;
+    padding: 0 12px;
+}
+
+.keys{
+    font-family: 'Nanum Gothic Coding', monospace;
+    width: 280px;
+    height: 400px;
+    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4px;
+    justify-content: center;
+    padding-top: 10px;
+    color: goldenrod;
+
+}
+
+.key-input{
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border-radius: 50%;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 8px;
+    
+}
+
+.pink{
+    color: rgb(250, 84, 111);
+}
+
+.clear{
+    color: red;
+}
+
+.total-bg{
+    background-color: rgb(253, 10, 50);
+    color: white;
+}
+
+
+.key-input:hover{
+    cursor: pointer;
+    background-color: rgb(46, 45, 45);
+}
