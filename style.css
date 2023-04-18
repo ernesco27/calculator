@@ -45,6 +45,7 @@ body{
 .answer{
     text-align: end;
     padding-right: 8px;
+    animation: all 1s ease;
 }
 
 .action-bar{
@@ -73,7 +74,7 @@ body{
 
 }
 
-.key-input{
+.key-input, .key-op, .key-total, .key-dot{
     width: 60px;
     height: 60px;
     background-color: black;
@@ -102,3 +103,28 @@ body{
     cursor: pointer;
     background-color: rgb(46, 45, 45);
 }
+
+.key-op:hover{
+    cursor: pointer;
+    background-color: rgb(46, 45, 45);
+}
+
+.key-dot{
+    cursor: pointer;
+    
+}
+
+.key-dot:hover{
+    cursor: pointer;
+    background-color: rgb(46, 45, 45);
+}
+
+#back:hover{
+    cursor: pointer;
+}
+
+.key-total:hover {
+    cursor: pointer;
+    background-color: rgb(241, 104, 104);
+}
+

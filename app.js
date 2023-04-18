@@ -1,24 +1,9 @@
 const entryView = document.querySelector('.entry');
 const answerView = document.querySelector('.answer');
 const keys = document.querySelectorAll('.key-input');
-const zero = document.getElementById('zero');
-const one = document.getElementById('one');
-const two = document.getElementById('two');
-const three = document.getElementById('three');
-const four = document.getElementById('four');
-const five = document.getElementById('five');
-const six = document.getElementById('six');
-const seven = document.getElementById('seven');
-const eight = document.getElementById('eight');
-const nine = document.getElementById('nine');
-const plus = document.getElementById('add');
-const minus = document.getElementById('minus');
-const divide = document.getElementById('divide');
-const multiply = document.getElementById('multiply');
-const plusOrMinus = document.getElementById('plus-minus');
-const equals = document.getElementById('equals');
+const operands = document.querySelectorAll('.key-op');
+const equal = document.querySelector('.key-total');
 const dot = document.getElementById('dot');
-const percent = document.getElementById('percentage');
 const clear = document.getElementById('clear');
 const back = document.getElementById('back');
 
@@ -26,9 +11,13 @@ let num1 = " ";
 let num2 = " ";
 let operator = " ";
 
+//the functions for each arithmetic operation is given below
+
 function add(num1, num2){
     return parseFloat(num1) + parseFloat(num2);
 }
+
+
 
 function subtract(num1, num2){
     return parseFloat(num2) - parseFloat(num1);
@@ -39,90 +28,72 @@ function times(num1, num2){
 }
 
 function divided(num1, num2){
-    return parseFloat(num1) / parseFloat(num2);
+    return parseFloat(num2) / parseFloat(num1);
 }
 
-function percentage(num1){
-    return parseFloat(num1) / 100;
+function percentage(num2){
+    return parseFloat(num2) / 100;
 }
 
 
+//this function is to remove a wrong entry
+function remove(){
+    if(operator === ""){
+        num1 = num1.slice(0, num1.length - 1)
+        entryView.textContent = num1;
+    }else{
+        num1 = num1.slice(0, num1.length - 1);
+        entryView.textContent = num1;
+    }
+}
+  
+//this function is to perform the required operation depending on the operator selected
 
 function operate(){
-    if(operator == '+'){
+    if(operator == "+"){
        return add(num1,num2);
-    }else if(operator == '-'){
+    }else if(operator == "-"){
         return subtract(num1,num2);
-    }else if(operator == '/'){
+    }else if(operator == "/"){
         return divided(num1,num2);
-    }else if(operator == 'x'){
+    }else if(operator == "x"){
         return times(num1,num2);
-    }else if(operator == '%'){
-        return percentage(num1)
+    }else if(operator == "%"){
+        return percentage(num2)
     }
 }
 
-//add event listeners to all the keys
 
-zero.addEventListener('click', ()=>{
-    num1 += '0';
+//added event listeners to all the keys
+
+keys.forEach(key => key.addEventListener('click', (e) =>{
+    num1 += key.textContent ;
     entryView.textContent = num1;
+    return;
+}))
 
-});
-
-one.addEventListener('click', ()=>{
-    num1 += 1;
-    entryView.textContent = num1;
-});
-
-two.addEventListener('click', ()=>{
-    num1 += 2;
-    entryView.textContent = num1;
-});
-
-three.addEventListener('click', ()=>{
-    num1 += 3;
-    entryView.textContent = num1;
-});
-
-four.addEventListener('click', ()=>{
-    num1 += 4;
-    entryView.textContent = num1;
-});
-
-five.addEventListener('click', ()=>{
-    num1 += 5;
-    entryView.textContent = num1;
-});
-
-six.addEventListener('click', ()=>{
-    num1 += 6;
-    entryView.textContent = num1;
-});
-
-seven.addEventListener('click', ()=>{
-    num1 += 7;
-    entryView.textContent = num1;
-});
-
-eight.addEventListener('click', ()=>{
-    num1 += 8;
-    entryView.textContent = num1;
-});
-
-nine.addEventListener('click', ()=>{
-    num1 += 9;
-    entryView.textContent = num1;
-});
+operands.forEach(operand => operand.addEventListener('click', (e) =>{
+    if(num2 !== " "){
+        num1 = operate();
+        entryView.textContent = `${num1} ${operator}`;
+    }
+    operator = operand.textContent;
+    num2 = num1;
+    num1 = " ";
+    entryView.textContent = `${num2} ${operator} ${num1}`; 
+    return;  
+}))
 
 function display(e){
+    if(num1 == " "){
+        num1 += '0'
+    }
+    if(num1.includes('.'))return
     num1 += '.';
     entryView.textContent = num1;
 }
 
-dot.addEventListener('click', display, {
-    once: true,
-});
+dot.addEventListener('click', display);
 
 clear.addEventListener('click', ()=>{
     entryView.textContent = " ";
@@ -130,53 +101,18 @@ clear.addEventListener('click', ()=>{
     num2 = " ";
     operator = " ";
     answerView.textContent = " ";
-});
-
-divide.addEventListener('click', ()=>{
-    operator = '/';
-    num2 = num1;
-    num1 = " ";
-    entryView.textContent = `${num2} ${operator} ${num1}`;
-});
-
-percent.addEventListener('click', ()=>{
-    operator = '%';
-    num2 = num1;
-    num1 = " ";
-    entryView.textContent = `${num2} ${operator} ${num1}`;
-});
-
-
-minus.addEventListener('click', ()=>{
-    operator = '-';
-    num2 = num1;
-    num1 = " ";
-    entryView.textContent = `${num2} ${operator} ${num1}`;
-});
-
-plus.addEventListener('click', ()=>{
-    operator = '+';
-    num2 = num1;
-    num1 = " ";
-    entryView.textContent = `${num2} ${operator} ${num1}`;
 
 });
 
-multiply.addEventListener('click', ()=>{
-    operator = 'x';
-    num2 = num1;
-    num1 = " ";
-    entryView.textContent = `${num2} ${operator} ${num1}`;
-});
-
- equals.addEventListener('click', function(){
+ equal.addEventListener('click', function(){
     let result = operate();
     answerView.textContent = result;
-    //operator = " ";
-    // num1 = " ";
-    // num2 = " ";
     entryView.textContent = `${num2} ${operator} ${num1}`;
  })
+
+
+back.addEventListener('click', remove);
+
 
 
 
