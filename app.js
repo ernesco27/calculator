@@ -6,6 +6,7 @@ const equal = document.querySelector('.key-total');
 const dot = document.getElementById('dot');
 const clear = document.getElementById('clear');
 const back = document.getElementById('back');
+const footer = document.querySelector('footer');
 
 let num1 = " ";
 let num2 = " ";
@@ -113,6 +114,6 @@ clear.addEventListener('click', ()=>{
 
 back.addEventListener('click', remove);
 
-
+footer.textContent += ` Kwabena, ${new Date().getFullYear()} 💖` ;
 
 
